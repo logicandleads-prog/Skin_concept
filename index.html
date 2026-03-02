@@ -9,12 +9,13 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <form name="booking" netlify hidden>
-      <input type="text" name="name" />
-      <input type="tel" name="phone" />
-      <input type="date" name="date" />
-      <input type="text" name="service" />
-      <textarea name="message"></textarea>
-    </form>
+<form name="booking" method="POST" data-netlify="true" hidden>
+  <input type="hidden" name="form-name" value="booking" />
+  <input type="text" name="name" />
+  <input type="tel" name="phone" />
+  <input type="date" name="date" />
+  <input type="text" name="service" />
+  <textarea name="message"></textarea>
+</form>
   </body>
 </html>
