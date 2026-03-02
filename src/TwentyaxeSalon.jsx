@@ -270,7 +270,9 @@ function Nav() {
           padding: "0 80px",
           background: isScrolled ? "rgba(10, 10, 10, 0.8)" : "transparent",
           backdropFilter: isScrolled ? "blur(15px)" : "none",
-          border: isScrolled ? "1px solid rgba(212,175,55,0.2)" : "1px solid transparent",
+          border: isScrolled
+            ? "1px solid rgba(212,175,55,0.2)"
+            : "1px solid transparent",
           borderRadius: isScrolled ? "100px" : "0px",
           zIndex: 9999,
           transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -336,8 +338,17 @@ function Nav() {
               gap: "6px",
             }}
           >
-            <div style={{ width: "24px", height: "1.5px", background: "#D4AF37" }} />
-            <div style={{ width: "16px", height: "1.5px", background: "#D4AF37", alignSelf: "flex-end" }} />
+            <div
+              style={{ width: "24px", height: "1.5px", background: "#D4AF37" }}
+            />
+            <div
+              style={{
+                width: "16px",
+                height: "1.5px",
+                background: "#D4AF37",
+                alignSelf: "flex-end",
+              }}
+            />
           </div>
         </div>
       </motion.nav>
@@ -374,7 +385,9 @@ function Nav() {
               CLOSE ✕
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "30px" }}
+            >
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.name}
@@ -394,9 +407,23 @@ function Nav() {
                 </motion.a>
               ))}
             </div>
-            
-            <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,175,55,0.2)", paddingTop: "30px" }}>
-              <p style={{ color: "#D4AF37", fontSize: "10px", letterSpacing: "4px" }}>TWENTYAXE SALON</p>
+
+            <div
+              style={{
+                marginTop: "auto",
+                borderTop: "1px solid rgba(212,175,55,0.2)",
+                paddingTop: "30px",
+              }}
+            >
+              <p
+                style={{
+                  color: "#D4AF37",
+                  fontSize: "10px",
+                  letterSpacing: "4px",
+                }}
+              >
+                TWENTYAXE SALON
+              </p>
             </div>
           </motion.div>
         )}
@@ -511,7 +538,7 @@ function Hero() {
         color: "#fff",
         overflow: "hidden",
         position: "relative",
-        zIndex: 5, 
+        zIndex: 5,
       }}
     >
       {/* BACKGROUND CROSSFADE */}
@@ -694,7 +721,7 @@ function SalonShowcase() {
         background: "#637B77",
         minHeight: "300vh",
         position: "relative",
-        zIndex: 1, 
+        zIndex: 1,
         marginTop: "0",
         boxShadow: "0 -20px 100px rgba(0,0,0,0.5)",
       }}
@@ -2402,7 +2429,10 @@ function Booking() {
                 name="booking"
                 method="POST"
                 data-netlify="true"
-                onSubmit={() => setDone(true)}
+                data-netlify-honeypot="bot-field"
+                onSubmit={(e) => {
+                  setDone(true);
+                }}
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -2411,6 +2441,7 @@ function Booking() {
               >
                 {/* REQUIRED hidden input */}
                 <input type="hidden" name="form-name" value="booking" />
+                <input type="hidden" name="bot-field" />
 
                 <input
                   type="text"
@@ -2494,8 +2525,7 @@ function Booking() {
                     padding: "18px",
                     borderRadius: "50px",
                     border: "none",
-                    background:
-                      "linear-gradient(135deg,#B38B59,#D6B98C)",
+                    background: "linear-gradient(135deg,#B38B59,#D6B98C)",
                     color: "#fff",
                     fontSize: "15px",
                     cursor: "pointer",
@@ -2519,7 +2549,6 @@ function Booking() {
     </section>
   );
 }
-
 
 /* ── FOOTER ── */
 
