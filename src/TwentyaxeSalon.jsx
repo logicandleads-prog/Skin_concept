@@ -179,46 +179,6 @@ function Cursor() {
   );
 }
 
-/* ── BALLOONS (from photo) ── */
-function Balloons() {
-  const balls = Array.from({ length: 14 }, (_, i) => ({
-    id: i,
-    left: `${5 + Math.random() * 90}%`,
-    delay: `${Math.random() * 14}s`,
-    dur: `${14 + Math.random() * 12}s`,
-    size: `${12 + Math.random() * 14}px`,
-    color:
-      i % 3 === 0
-        ? "var(--copper)"
-        : i % 3 === 1
-          ? "var(--copper3)"
-          : "var(--wood)",
-  }));
-  return (
-    <div
-      style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 1 }}
-    >
-      {balls.map((b) => (
-        <div
-          key={b.id}
-          style={{
-            position: "absolute",
-            bottom: "-20px",
-            left: b.left,
-            width: b.size,
-            height: b.size,
-            borderRadius: "50% 50% 50% 48%",
-            background: b.color,
-            animation: `balloonFloat ${b.dur} ${b.delay} infinite linear`,
-            opacity: 0.35,
-            boxShadow: `inset -2px -2px 4px rgba(0,0,0,.15)`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 /* ── REVEAL ── */
 function useReveal() {
   useEffect(() => {
@@ -249,9 +209,8 @@ function Nav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  // Detect scroll position
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 40);
+    setIsScrolled(latest > 50);
   });
 
   const navLinks = [
@@ -264,7 +223,6 @@ function Nav() {
 
   return (
     <>
-      {/* FONTS + LINK STYLES */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap');
 
@@ -274,227 +232,172 @@ function Nav() {
           letter-spacing: 2px;
           font-size: 11px;
           position: relative;
-          color: #fff;
           text-decoration: none;
           opacity: 0.8;
-          transition: opacity 0.3s ease;
+          transition: all 0.3s ease;
         }
 
-        .nav-link:hover {
-          opacity: 1;
-        }
-
-        .nav-link::after {
-          content: "";
-          position: absolute;
-          bottom: -6px;
-          left: 0;
-          width: 0%;
-          height: 1px;
-          background: #D4AF37;
-          transition: width 0.35s ease;
-        }
-
-        .nav-link:hover::after {
-          width: 100%;
-        }
+        .nav-link:hover { opacity: 1; color: #D4AF37 !important; }
 
         @media (max-width: 1024px) {
-          .desktop-menu {
-            display: none !important;
-          }
+          .desktop-menu { display: none !important; }
+          .nav-container { padding: 0 20px !important; }
+          .reserve-btn { display: none !important; } /* Hide on small mobile to save space */
+        }
+        
+        @media (min-width: 480px) {
+          .reserve-btn { display: block !important; }
         }
       `}</style>
 
-      {/* PROFESSIONAL NAVBAR */}
       <motion.nav
+        className="nav-container"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.8 }}
         style={{
           position: "fixed",
-          top: isScrolled ? "18px" : "0",
+          top: isScrolled ? "15px" : "0",
           left: 0,
           right: 0,
           margin: "0 auto",
-
-          width: isScrolled ? "92%" : "100%",
+          width: isScrolled ? "94%" : "100%",
           maxWidth: "1400px",
-          height: isScrolled ? "72px" : "95px",
-
+          height: isScrolled ? "70px" : "90px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-
           padding: "0 80px",
-
-          background: isScrolled ? "rgba(243, 241, 241, 0.6)" : "transparent",
-
-          backdropFilter: isScrolled ? "blur(22px)" : "none",
-
-          border: isScrolled
-            ? "1px solid rgba(212,175,55,0.18)"
-            : "1px solid transparent",
-
+          background: isScrolled ? "rgba(10, 10, 10, 0.8)" : "transparent",
+          backdropFilter: isScrolled ? "blur(15px)" : "none",
+          border: isScrolled ? "1px solid rgba(212,175,55,0.2)" : "1px solid transparent",
           borderRadius: isScrolled ? "100px" : "0px",
-
-          boxShadow: isScrolled ? "0 20px 40px rgba(0,0,0,0.35)" : "none",
-
-          transition:
-            "width 0.4s ease, height 0.4s ease, top 0.4s ease, background 0.4s ease, border 0.4s ease",
-
           zIndex: 9999,
+          transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       >
         {/* LOGO */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center" }}>
           <img
             src={twentyaxe}
-            alt="TwentyAxe Salon"
+            alt="TwentyAxe"
             style={{
-              height: isScrolled ? "126px" : "58px",
+              height: isScrolled ? "45px" : "55px", // Scaled down for mobile sanity
               width: "auto",
               filter: isScrolled ? "brightness(1)" : "brightness(1.2)",
-              transition: "all 0.4s ease",
+              transition: "height 0.4s ease",
             }}
           />
         </div>
 
-        {/* DESKTOP LINKS */}
-        <div
-          className="desktop-menu"
-          style={{
-            display: "flex",
-            gap: "42px",
-            alignItems: "center",
-          }}
-        >
+        {/* DESKTOP MENU */}
+        <div className="desktop-menu" style={{ display: "flex", gap: "35px" }}>
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               className="nav-link"
-              style={{
-                color: isScrolled ? "#000" : "#fff",
-                transition: "color 0.3s ease",
-              }}
+              style={{ color: isScrolled ? "#fff" : "#fff" }}
             >
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* RIGHT SIDE */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "24px",
-          }}
-        >
+        {/* ACTIONS */}
+        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           <a
             href="#book"
+            className="reserve-btn"
             style={{
-              padding: "12px 30px",
+              padding: "10px 22px",
               background: "#D4AF37",
               color: "#000",
-              fontSize: "11px",
-              fontWeight: 700,
+              fontSize: "10px",
+              fontWeight: 800,
               letterSpacing: "2px",
               textTransform: "uppercase",
               textDecoration: "none",
-              borderRadius: "3px",
-              transition: "all 0.3s ease",
+              borderRadius: "50px",
+              transition: "transform 0.3s ease",
             }}
           >
             Reserve
           </a>
 
-          {/* BURGER MENU */}
+          {/* BURGER BOX */}
           <div
             onClick={() => setIsMobileMenuOpen(true)}
             style={{
               cursor: "pointer",
+              padding: "10px",
               display: "flex",
               flexDirection: "column",
               gap: "6px",
             }}
           >
-            <div
-              style={{
-                width: "26px",
-                height: "2px",
-                background: "#D4AF37",
-              }}
-            />
-            <div
-              style={{
-                width: "18px",
-                height: "2px",
-                background: "#D4AF37",
-                alignSelf: "flex-end",
-              }}
-            />
+            <div style={{ width: "24px", height: "1.5px", background: "#D4AF37" }} />
+            <div style={{ width: "16px", height: "1.5px", background: "#D4AF37", alignSelf: "flex-end" }} />
           </div>
         </div>
       </motion.nav>
 
-      {/* MOBILE MENU */}
+      {/* FULLSCREEN MOBILE OVERLAY */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, clipPath: "circle(0% at 90% 10%)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at 90% 10%)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at 90% 10%)" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: "fixed",
               inset: 0,
-              background: "#0A0A0A",
+              background: "#0F0F0F",
               zIndex: 10000,
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
-              padding: "0 10%",
+              padding: "40px",
             }}
           >
-            {/* CLOSE */}
             <div
               onClick={() => setIsMobileMenuOpen(false)}
               style={{
-                position: "absolute",
-                top: "32px",
-                right: "32px",
-                fontSize: "12px",
-                letterSpacing: "4px",
+                alignSelf: "flex-end",
                 color: "#D4AF37",
+                fontSize: "12px",
+                letterSpacing: "3px",
                 cursor: "pointer",
+                marginBottom: "60px",
               }}
             >
               CLOSE ✕
             </div>
 
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: "clamp(36px, 6vw, 72px)",
-                  color: "#fff",
-                  textDecoration: "none",
-                  marginBottom: "18px",
-                }}
-              >
-                {link.name}
-              </a>
-            ))}
+            <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.1 }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: "42px",
+                    color: "#fff",
+                    textDecoration: "none",
+                  }}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </div>
+            
+            <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,175,55,0.2)", paddingTop: "30px" }}>
+              <p style={{ color: "#D4AF37", fontSize: "10px", letterSpacing: "4px" }}>TWENTYAXE SALON</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -2394,20 +2297,10 @@ function Booking() {
   const lat = 22.9829881;
   const lng = 72.6220093;
 
-  // High-end Embed URL with the exact Pin location
   const mapSrc = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1000!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin`;
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    service: "",
-    date: "",
-    message: "",
-  });
 
   const [done, setDone] = useState(false);
   const [focused, setFocused] = useState(null);
-
-  const up = (k, v) => setForm((f) => ({ ...f, [k]: v }));
 
   return (
     <section
@@ -2417,13 +2310,8 @@ function Booking() {
         background: "#F8F7F4",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1500px",
-          margin: "0 auto",
-        }}
-      >
-        {/* Section Heading */}
+      <div style={{ maxWidth: "1500px", margin: "0 auto" }}>
+        {/* Heading */}
         <div style={{ textAlign: "center", marginBottom: "80px" }}>
           <h2
             style={{
@@ -2450,14 +2338,13 @@ function Booking() {
           </p>
         </div>
 
-        {/* Grid Layout */}
         <div
+          className="booking-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "60px",
           }}
-          className="booking-grid"
         >
           {/* Google Map */}
           <div
@@ -2469,15 +2356,12 @@ function Booking() {
             }}
           >
             <iframe
-              // src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.2081829352213!2d72.6416629!3d22.979391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e87a98bc75ebf%3A0xbc2a329aa680db5f!2sTwenty%20Axe%20Saloon!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
               src={mapSrc}
               width="100%"
               height="100%"
-              style={{ border: 0, filter: "grayscale(0.2) contrast(1.1)" }}
-              allowFullScreen=""
+              style={{ border: 0 }}
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Twenty Axe Saloon Location"
+              title="Salon Location"
             />
           </div>
 
@@ -2493,22 +2377,10 @@ function Booking() {
             {done ? (
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "60px", marginBottom: "20px" }}>✓</div>
-                <h3
-                  style={{
-                    fontSize: "28px",
-                    marginBottom: "16px",
-                    color: "#111",
-                  }}
-                >
+                <h3 style={{ fontSize: "28px", marginBottom: "16px" }}>
                   Booking Request Sent
                 </h3>
-                <p
-                  style={{
-                    color: "#666",
-                    fontSize: "15px",
-                    lineHeight: 1.8,
-                  }}
-                >
+                <p style={{ color: "#666", fontSize: "15px", lineHeight: 1.8 }}>
                   Thank you! We'll confirm your appointment shortly.
                 </p>
                 <button
@@ -2527,65 +2399,76 @@ function Booking() {
               </div>
             ) : (
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setDone(true);
-                }}
+                name="booking"
+                method="POST"
+                data-netlify="true"
+                onSubmit={() => setDone(true)}
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   gap: "20px",
                 }}
               >
-                {[
-                  ["name", "Full Name", "text"],
-                  ["phone", "WhatsApp Number", "tel"],
-                ].map(([k, ph, tp]) => (
-                  <input
-                    key={k}
-                    type={tp}
-                    required
-                    placeholder={ph}
-                    value={form[k]}
-                    onChange={(e) => up(k, e.target.value)}
-                    onFocus={() => setFocused(k)}
-                    onBlur={() => setFocused(null)}
-                    style={{
-                      padding: "16px 18px",
-                      borderRadius: "12px",
-                      border:
-                        focused === k ? "2px solid #B38B59" : "1px solid #DDD",
-                      fontSize: "15px",
-                      outline: "none",
-                      transition: "all .3s ease",
-                    }}
-                  />
-                ))}
+                {/* REQUIRED hidden input */}
+                <input type="hidden" name="form-name" value="booking" />
+
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Full Name"
+                  onFocus={() => setFocused("name")}
+                  onBlur={() => setFocused(null)}
+                  style={{
+                    padding: "16px",
+                    borderRadius: "12px",
+                    border:
+                      focused === "name"
+                        ? "2px solid #B38B59"
+                        : "1px solid #DDD",
+                    outline: "none",
+                  }}
+                />
+
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  placeholder="WhatsApp Number"
+                  onFocus={() => setFocused("phone")}
+                  onBlur={() => setFocused(null)}
+                  style={{
+                    padding: "16px",
+                    borderRadius: "12px",
+                    border:
+                      focused === "phone"
+                        ? "2px solid #B38B59"
+                        : "1px solid #DDD",
+                    outline: "none",
+                  }}
+                />
 
                 <input
                   type="date"
-                  value={form.date}
-                  onChange={(e) => up("date", e.target.value)}
+                  name="date"
+                  required
                   style={{
-                    padding: "16px 18px",
+                    padding: "16px",
                     borderRadius: "12px",
                     border: "1px solid #DDD",
-                    fontSize: "15px",
                   }}
                 />
 
                 <select
+                  name="service"
                   required
-                  value={form.service}
-                  onChange={(e) => up("service", e.target.value)}
                   style={{
-                    padding: "16px 18px",
+                    padding: "16px",
                     borderRadius: "12px",
                     border: "1px solid #DDD",
-                    fontSize: "15px",
                   }}
                 >
-                  <option value="" disabled>
+                  <option value="" disabled selected>
                     Select Service
                   </option>
                   <option>Hair Artistry</option>
@@ -2595,39 +2478,28 @@ function Booking() {
                 </select>
 
                 <textarea
+                  name="message"
                   rows={4}
                   placeholder="Special request..."
-                  value={form.message}
-                  onChange={(e) => up("message", e.target.value)}
                   style={{
-                    padding: "16px 18px",
+                    padding: "16px",
                     borderRadius: "12px",
                     border: "1px solid #DDD",
-                    fontSize: "15px",
-                    resize: "vertical",
                   }}
                 />
 
                 <button
                   type="submit"
                   style={{
-                    marginTop: "10px",
                     padding: "18px",
                     borderRadius: "50px",
                     border: "none",
-                    background: "linear-gradient(135deg,#B38B59,#D6B98C)",
+                    background:
+                      "linear-gradient(135deg,#B38B59,#D6B98C)",
                     color: "#fff",
                     fontSize: "15px",
-                    fontWeight: 500,
                     cursor: "pointer",
-                    transition: "all .3s ease",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.target.style.transform = "translateY(-3px)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.target.style.transform = "translateY(0)")
-                  }
                 >
                   Send Appointment →
                 </button>
@@ -2637,7 +2509,6 @@ function Booking() {
         </div>
       </div>
 
-      {/* Responsive Fix */}
       <style>{`
         @media(max-width: 1024px){
           .booking-grid{
@@ -2648,6 +2519,7 @@ function Booking() {
     </section>
   );
 }
+
 
 /* ── FOOTER ── */
 
