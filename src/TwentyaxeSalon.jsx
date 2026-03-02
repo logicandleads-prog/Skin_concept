@@ -608,6 +608,7 @@ function Hero() {
         color: "#fff",
         overflow: "hidden",
         position: "relative",
+        zIndex: 5, 
       }}
     >
       {/* BACKGROUND CROSSFADE */}
@@ -790,6 +791,8 @@ function SalonShowcase() {
         background: "#637B77",
         minHeight: "300vh",
         position: "relative",
+        zIndex: 1, 
+        marginTop: "0",
         boxShadow: "0 -20px 100px rgba(0,0,0,0.5)",
       }}
     >
@@ -2893,11 +2896,7 @@ export default function App() {
       <Cursor />
       {/* <Balloons /> */}
       <Nav />
-      {/* <div style={{ position: "relative", zIndex: 1 }}> */}
       <Hero />
-      {/* </div> */}
-
-      {/* <div style={{ position: "relative", zIndex: 2 }}> */}
       <SalonShowcase />
       {/* </div> */}
       <About />
