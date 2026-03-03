@@ -2320,13 +2320,42 @@ function Testimonials() {
 }
 /* ── BOOKING ── */
 
+function encode(data) {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
 function Booking() {
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    date: "",
+    service: "",
+    message: "",
+  });
+
+  const [done, setDone] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "booking",
+        ...form,
+      }),
+    })
+      .then(() => setDone(true))
+      .catch((error) => alert(error));
+  };
+
   const lat = 22.9829881;
   const lng = 72.6220093;
 
   const mapSrc = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1000!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin`;
 
-  const [done, setDone] = useState(false);
   const [focused, setFocused] = useState(null);
 
   return (
@@ -2387,7 +2416,7 @@ function Booking() {
               width="100%"
               height="100%"
               style={{ border: 0 }}
-              loading="lazy"
+              loading="lazy"  
               title="Salon Location"
             />
           </div>
@@ -2429,79 +2458,40 @@ function Booking() {
                 name="booking"
                 method="POST"
                 data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                onSubmit={(e) => {
-                  setDone(true);
-                }}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "20px",
-                }}
+                onSubmit={handleSubmit}
               >
-                {/* REQUIRED hidden input */}
-                <input type="hidden" name="form-name" value="booking" />
-                <input type="hidden" name="bot-field" />
+                  <input type="hidden" name="form-name" value="booking" />
+  <input type="hidden" name="bot-field" />
 
                 <input
                   type="text"
                   name="name"
                   required
-                  placeholder="Full Name"
-                  onFocus={() => setFocused("name")}
-                  onBlur={() => setFocused(null)}
-                  style={{
-                    padding: "16px",
-                    borderRadius: "12px",
-                    border:
-                      focused === "name"
-                        ? "2px solid #B38B59"
-                        : "1px solid #DDD",
-                    outline: "none",
-                  }}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
 
                 <input
                   type="tel"
                   name="phone"
                   required
-                  placeholder="WhatsApp Number"
-                  onFocus={() => setFocused("phone")}
-                  onBlur={() => setFocused(null)}
-                  style={{
-                    padding: "16px",
-                    borderRadius: "12px",
-                    border:
-                      focused === "phone"
-                        ? "2px solid #B38B59"
-                        : "1px solid #DDD",
-                    outline: "none",
-                  }}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 />
 
                 <input
                   type="date"
                   name="date"
                   required
-                  style={{
-                    padding: "16px",
-                    borderRadius: "12px",
-                    border: "1px solid #DDD",
-                  }}
+                  onChange={(e) => setForm({ ...form, date: e.target.value })}
                 />
 
                 <select
                   name="service"
                   required
-                  style={{
-                    padding: "16px",
-                    borderRadius: "12px",
-                    border: "1px solid #DDD",
-                  }}
+                  onChange={(e) =>
+                    setForm({ ...form, service: e.target.value })
+                  }
                 >
-                  <option value="" disabled selected>
-                    Select Service
-                  </option>
+                  <option value="">Select Service</option>
                   <option>Hair Artistry</option>
                   <option>Skin & Glow</option>
                   <option>Bridal & Occasion</option>
@@ -2510,29 +2500,12 @@ function Booking() {
 
                 <textarea
                   name="message"
-                  rows={4}
-                  placeholder="Special request..."
-                  style={{
-                    padding: "16px",
-                    borderRadius: "12px",
-                    border: "1px solid #DDD",
-                  }}
+                  onChange={(e) =>
+                    setForm({ ...form, message: e.target.value })
+                  }
                 />
 
-                <button
-                  type="submit"
-                  style={{
-                    padding: "18px",
-                    borderRadius: "50px",
-                    border: "none",
-                    background: "linear-gradient(135deg,#B38B59,#D6B98C)",
-                    color: "#fff",
-                    fontSize: "15px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Send Appointment →
-                </button>
+                <button type="submit">Send Appointment</button>
               </form>
             )}
           </div>
