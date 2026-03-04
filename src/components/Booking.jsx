@@ -13,6 +13,7 @@ function Booking() {
     date: "",
     service: "",
     message: "",
+    other: "",
   });
 
   const [done, setDone] = useState(false);
@@ -37,7 +38,10 @@ function Booking() {
       <div className="booking-container">
         <div className="booking-header">
           <h2>Book Your Appointment</h2>
-          <p>Visit us or reserve your slot online. We confirm bookings within a few hours.</p>
+          <p>
+            Visit us or reserve your slot online. We confirm bookings within a
+            few hours.
+          </p>
         </div>
 
         <div className="booking-grid">
@@ -46,14 +50,27 @@ function Booking() {
             {done ? (
               <div className="success-state">
                 <div className="check-circle">✓</div>
+
                 <h3>Booking Request Sent</h3>
-                <p>Thank you! We'll confirm your appointment shortly.</p>
-                <button className="reset-btn" onClick={() => setDone(false)}>Book Again</button>
+
+                <p>
+                  Thank you! We’ve received your request and will confirm your
+                  appointment shortly.
+                </p>
+
+                <button className="reset-btn" onClick={() => setDone(false)}>
+                  Book Again
+                </button>
               </div>
             ) : (
-              <form name="booking" method="POST" data-netlify="true" onSubmit={handleSubmit}>
+              <form
+                name="booking"
+                method="POST"
+                data-netlify="true"
+                onSubmit={handleSubmit}
+              >
                 <input type="hidden" name="form-name" value="booking" />
-                
+
                 <div className="input-field">
                   <label>Full Name</label>
                   <input
@@ -72,7 +89,9 @@ function Booking() {
                     name="phone"
                     placeholder="+91 00000 00000"
                     required
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, phone: e.target.value })
+                    }
                   />
                 </div>
 
@@ -83,7 +102,9 @@ function Booking() {
                       type="date"
                       name="date"
                       required
-                      onChange={(e) => setForm({ ...form, date: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, date: e.target.value })
+                      }
                     />
                   </div>
 
@@ -92,28 +113,41 @@ function Booking() {
                     <select
                       name="service"
                       required
-                      onChange={(e) => setForm({ ...form, service: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, service: e.target.value })
+                      }
                     >
                       <option value="">Select Service</option>
                       <option>Hair Artistry</option>
                       <option>Skin & Glow</option>
                       <option>Bridal & Occasion</option>
                       <option>Consultation</option>
+                      <option>Other</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="input-field">
-                  <label>Message (Optional)</label>
+                  <label>
+                    Message{" "}
+                    {form.service === "Other" ? "(Required)" : "(Optional)"}
+                  </label>
+
                   <textarea
                     name="message"
                     placeholder="Tell us about your requirements..."
                     rows="3"
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    value={form.message || ""}
+                    required={form.service === "Other"}
+                    onChange={(e) =>
+                      setForm({ ...form, message: e.target.value })
+                    }
                   />
                 </div>
 
-                <button type="submit" className="submit-btn">Send Appointment Request</button>
+                <button type="submit" className="submit-btn">
+                  Send Appointment Request
+                </button>
               </form>
             )}
           </div>
@@ -133,55 +167,218 @@ function Booking() {
       </div>
 
       <style>{`
-        .booking-section { padding: 80px 5vw; background: #FAF9F6; font-family: 'Inter', sans-serif; }
-        .booking-container { max-width: 1200px; margin: 0 auto; }
-        
-        .booking-header { text-align: center; margin-bottom: 50px; }
-        .booking-header h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 600; color: #111; margin-bottom: 12px; }
-        .booking-header p { color: #666; font-size: 16px; line-height: 1.5; max-width: 500px; margin: 0 auto; }
+.booking-section {
+  padding: 90px 5vw;
+  background: #fdfbf7;
+  font-family: 'Inter', sans-serif;
+}
 
-        .booking-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; }
-        
-        .form-wrapper { background: #fff; padding: 40px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); }
-        .map-wrapper { border-radius: 24px; overflow: hidden; min-height: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.booking-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-        .input-field { margin-bottom: 20px; display: flex; flex-direction: column; }
-        .input-field label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #444; margin-bottom: 8px; }
-        
-        .row-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.booking-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
 
-        input, select, textarea {
-          padding: 14px 16px;
-          border: 1.5px solid #eee;
-          border-radius: 10px;
-          font-size: 15px;
-          background: #fcfcfc;
-          transition: 0.3s;
-        }
+.booking-header h2 {
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+  letter-spacing: -0.5px;
+}
 
-        input:focus { outline: none; border-color: #111; background: #fff; }
+.booking-header p {
+  color: #6b6b6b;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto;
+}
 
-        .submit-btn {
-          width: 100%;
-          padding: 16px;
-          background: #111;
-          color: white;
-          border: none;
-          border-radius: 10px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: 0.2s;
-        }
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 50px;
+  align-items: stretch;
+}
 
-        /* MOBILE FIXES */
-        @media (max-width: 900px) {
-          .booking-section { padding: 60px 20px; }
-          .booking-grid { grid-template-columns: 1fr; gap: 30px; }
-          .form-wrapper { padding: 30px 20px; }
-          .row-group { grid-template-columns: 1fr; } /* Stack date/service on mobile */
-          .map-wrapper { height: 300px; min-height: unset; }
-          .booking-header { margin-bottom: 30px; }
-        }
+/* FORM */
+.form-wrapper {
+  background: #ffffff;
+  padding: 50px 45px;
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0ece6;
+}
+
+/* MAP */
+.map-wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 500px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+}
+
+/* INPUTS */
+.input-field {
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.row-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+input,
+select,
+textarea {
+  padding: 15px 16px;
+  border: 1.5px solid #e8e4de;
+  border-radius: 12px;
+  font-size: 15px;
+  background: #faf9f7;
+  transition: all 0.25s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2b0d0d;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(43, 13, 13, 0.08);
+}
+
+/* BUTTON */
+.submit-btn {
+  width: 100%;
+  padding: 17px;
+  background: #070600;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #D4AF37;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(43, 13, 13, 0.25);
+}
+
+/* SUCCESS CARD - Light Premium */
+.success-state {
+  padding: 50px 35px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid #e8f5e9;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.5s ease;
+}
+
+.check-circle {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+}
+
+.success-state h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.success-state p {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.reset-btn {
+  padding: 13px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  background: #070000;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+  background: #D4AF37;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(43, 13, 13, 0.25);
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .booking-section {
+    padding: 60px 20px;
+  }
+
+  .booking-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .form-wrapper {
+    padding: 35px 25px;
+  }
+
+  .row-group {
+    grid-template-columns: 1fr;
+  }
+
+  .map-wrapper {
+    height: 320px;
+    min-height: unset;
+  }
+}
       `}</style>
     </section>
   );

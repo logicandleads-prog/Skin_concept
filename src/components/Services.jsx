@@ -239,26 +239,6 @@ function Services() {
                 }}>
                   {current.desc}
                 </p>
-
-                <div>
-                  <button
-                    style={{
-                      padding: "18px 40px",
-                      background: "#111",
-                      border: "none",
-                      borderRadius: "100px",
-                      color: "#fff",
-                      cursor: "pointer",
-                      fontWeight: 500,
-                      fontSize: "15px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
-                  >
-                    Book Appointment
-                  </button>
-                </div>
               </div>
 
               {/* Right Column: List Items */}

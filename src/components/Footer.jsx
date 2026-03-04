@@ -187,56 +187,7 @@ function Footer() {
             </div>
           </div>
 
-          {/* NEWSLETTER */}
-          <div>
-            <h4
-              style={{
-                fontSize: "13px",
-                letterSpacing: "3px",
-                marginBottom: "25px",
-                color: "#D4AF37",
-                textTransform: "uppercase",
-              }}
-            >
-              Newsletter
-            </h4>
-
-            <p
-              style={{
-                color: "rgba(255,255,255,0.6)",
-                fontSize: "14px",
-                marginBottom: "20px",
-              }}
-            >
-              Get updates on new rituals and seasonal offers.
-            </p>
-
-            <div style={{ display: "flex" }}>
-              <input
-                type="email"
-                placeholder="Your email"
-                style={{
-                  flex: 1,
-                  padding: "14px",
-                  background: "transparent",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  color: "#fff",
-                  outline: "none",
-                }}
-              />
-              <button
-                style={{
-                  padding: "14px 20px",
-                  background: "#D4AF37",
-                  border: "none",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                }}
-              >
-                →
-              </button>
-            </div>
-          </div>
+    
         </div>
 
         {/* BOTTOM BAR */}
