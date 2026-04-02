@@ -3,57 +3,56 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function Services() {
   const [active, setActive] = useState(0);
-
-  const services = [
-    {
-      num: "01",
-      icon: "✂️",
-      title: "Hair Artistry",
-      tagline: "Precision. Shine. Confidence.",
-      desc: "Precision cuts, dimensional color and restorative treatments tailored to your hair texture and lifestyle.",
-      items: [
-        "Precision Cuts",
-        "Color & Highlights",
-        "Keratin Treatments",
-        "Hair Spa Ritual",
-        "Smoothening",
-      ],
-      accent: "#8FA8A3",
-      bg: "#F4F7F6",
-    },
-    {
-      num: "02",
-      icon: "✨",
-      title: "Skin & Glow",
-      tagline: "Radiance. Restored.",
-      desc: "Results-driven facials and personalized skincare crafted for luminous, healthy skin.",
-      items: [
-        "Custom Facials",
-        "Gold Facial",
-        "De-Tan Ritual",
-        "Anti-Aging Care",
-        "Skin Consultation",
-      ],
-      accent: "#C6A972",
-      bg: "#FAF7F2",
-    },
-    {
-      num: "03",
-      icon: "👑",
-      title: "Bridal Atelier",
-      tagline: "Your Day. Perfected.",
-      desc: "Timeless bridal artistry crafted to photograph beautifully and feel effortlessly you.",
-      items: [
-        "Bridal Makeup",
-        "Pre-Bridal Ritual",
-        "Reception Styling",
-        "Hair Sculpting",
-        "Saree Draping",
-      ],
-      accent: "#9B8579",
-      bg: "#F7F3F1",
-    },
-  ];
+const services = [
+  {
+    num: "01",
+    icon: "✨",
+    title: "Skin Treatments",
+    tagline: "Clear. Radiant. Healthy.",
+    desc: "Advanced dermatological treatments designed to restore skin clarity, improve texture, and enhance natural glow using modern clinical techniques.",
+    items: [
+      "Acne & Scar Treatment",
+      "Hydra Facial Therapy",
+      "Chemical Peels",
+      "Pigmentation Removal",
+      "Skin Brightening",
+    ],
+    accent: "var(--purple)",
+    bg: "#ffffff",
+  },
+  {
+    num: "02",
+    icon: "💇‍♀️",
+    title: "Hair Solutions",
+    tagline: "Strength. Volume. Confidence.",
+    desc: "Targeted hair treatments focused on scalp health, hair restoration, and long-term strengthening using medically approved solutions.",
+    items: [
+      "Hair Fall Treatment",
+      "PRP Therapy",
+      "Scalp Analysis",
+      "Dandruff Control",
+      "Hair Strengthening",
+    ],
+    accent: "var(--purple)",
+    bg: "#F3EFF2",
+  },
+  {
+    num: "03",
+    icon: "⚡",
+    title: "Laser Treatments",
+    tagline: "Smooth. Precise. Permanent.",
+    desc: "State-of-the-art laser technology delivering safe and effective solutions for hair removal and skin correction with long-lasting results.",
+    items: [
+      "Laser Hair Removal",
+      "Full Body Laser",
+      "Pigmentation Laser",
+      "Skin Resurfacing",
+      "Tattoo Removal",
+    ],
+    accent: "var(--purple)",
+    bg: "#F4F0F3",
+  },
+];
 
   const current = services[active];
 
@@ -98,7 +97,9 @@ function Services() {
     <section
       style={{
         padding: "clamp(60px,10vw,140px) 5vw",
-        background: "#0b0b0b",
+        // background:
+        //   "linear-gradient(180deg,#f9f7f3 0%,#f3efe8 50%,#f9f7f3 100%)",
+        background: "#ffffff",
         color: "#fff",
         overflow: "hidden"
       }}
@@ -116,11 +117,12 @@ function Services() {
           marginBottom: "60px"
         }}>
           <span style={{
-            fontSize: "12px",
+            fontSize: "14px",
             letterSpacing: "0.4em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.4)",
-            display: "block"
+            color: "rgba(0, 0, 0, 0.4)",
+            display: "block",
+            fontWeight: 600
           }}>
             Experience Excellence
           </span>
@@ -134,17 +136,20 @@ function Services() {
           }}>
             <h2 style={{
               fontSize: "clamp(40px, 8vw, 80px)",
-              fontWeight: 300,
+              fontWeight: 600,
               lineHeight: 1,
               margin: 0,
-            }}>
+              color: "#000"
+            }}
+            className="main-title">
+
               Our Services
             </h2>
             <p style={{
               maxWidth: "400px",
               lineHeight: 1.7,
-              color: "rgba(255,255,255,0.6)",
-              fontSize: "16px",
+              color: "rgba(0, 0, 0, 0.6)",
+              fontSize: "18px",
               margin: 0
             }}>
               Meticulously curated treatments designed to elevate your natural beauty and provide a sanctuary of relaxation.
@@ -164,9 +169,9 @@ function Services() {
                 style={{
                   padding: "16px 32px",
                   borderRadius: "100px",
-                  border: `1px solid ${isActive ? svc.accent : "rgba(255,255,255,0.15)"}`,
+                  border: `1px solid ${isActive ? "rgba(5, 0, 0, 0.15)" : "rgba(0, 0, 0, 1)"}`,
                   background: isActive ? svc.accent : "transparent",
-                  color: isActive ? "#000" : "#fff",
+                  color: !isActive ? "#000" : "#fff",
                   cursor: "pointer",
                   fontSize: "14px",
                   fontWeight: 500,

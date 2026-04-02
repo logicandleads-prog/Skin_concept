@@ -29,15 +29,15 @@ function Booking() {
       .catch((error) => alert(error));
   };
 
-  const lat = 22.9829881;
-  const lng = 72.6220093;
+  const lat = 23.1059368;
+  const lng = 72.5944719;
   const mapSrc = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14690.0!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin`;
 
   return (
     <section id="book" className="booking-section">
       <div className="booking-container">
         <div className="booking-header">
-          <h2>Book Your Appointment</h2>
+          <h2 className="main-title">Book Your Appointment</h2>
           <p>
             Visit us or reserve your slot online. We confirm bookings within a
             few hours.
@@ -169,7 +169,7 @@ function Booking() {
       <style>{`
 .booking-section {
   padding: 90px 5vw;
-  background: #fdfbf7;
+  background: #ffffff;
   font-family: 'Inter', sans-serif;
 }
 
@@ -269,19 +269,21 @@ textarea:focus {
 .submit-btn {
   width: 100%;
   padding: 17px;
-  background: #070600;
+  background: #d5cdcd;
   color: white;
-  border: none;
+  border: 1px solid #e8e4de;
   border-radius: 14px;
   font-weight: 600;
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  color: #000000;
 }
 
 .submit-btn:hover {
-  background: #D4AF37;
+  background: var(--purple);
   transform: translateY(-2px);
+  color: #fff;
   box-shadow: 0 10px 25px rgba(43, 13, 13, 0.25);
 }
 

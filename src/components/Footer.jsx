@@ -14,7 +14,7 @@ function Footer() {
   return (
     <footer
       style={{
-        background: "#111111",
+        background: "var(--purple)",
         color: "#fff",
         padding: "120px 8% 50px",
         position: "relative",
@@ -41,9 +41,11 @@ function Footer() {
                 fontWeight: 300,
                 letterSpacing: "6px",
                 marginBottom: "25px",
+                color: "var(--white)",
               }}
+              className="main-title"
             >
-              MAISON
+              Skin Concept
             </h2>
 
             <p

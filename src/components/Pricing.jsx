@@ -19,48 +19,48 @@ function Pricing() {
     return () => observer.disconnect();
   }, []);
 
-  const plans = [
-    {
-      name: "Hair Artistry",
-      icon: "✂️",
-      col: "#7A948F",
-      items: [
-        ["Precision Haircut", "₹299"],
-        ["Luxury Styling", "₹499"],
-        ["Global Color", "₹1,299+"],
-        ["Balayage / Highlights", "₹1,999+"],
-        ["Keratin Therapy", "₹2,499+"],
-        ["Signature Hair Spa", "₹699"],
-      ],
-    },
-    {
-      name: "Skin & Glow",
-      icon: "✨",
-      col: "#C6A972",
-      featured: true,
-      items: [
-        ["Express Cleanup", "₹399"],
-        ["De-Tan Therapy", "₹599"],
-        ["Classic Facial", "₹799"],
-        ["24K Gold Facial", "₹1,499"],
-        ["Anti-Aging Ritual", "₹1,799"],
-        ["Full Body Radiance", "₹1,299"],
-      ],
-    },
-    {
-      name: "Bridal Couture",
-      icon: "👑",
-      col: "#8B6B4E",
-      items: [
-        ["Bridal Signature Look", "₹4,999+"],
-        ["Pre-Bridal Package", "₹7,999+"],
-        ["Engagement Glam", "₹2,999"],
-        ["Party Makeup", "₹1,499"],
-        ["Hair Styling", "₹999+"],
-        ["Saree Draping", "₹499"],
-      ],
-    },
-  ];
+ const plans = [
+  {
+    name: "Skin Treatments",
+    icon: "✨",
+    col: "#4F1C3D",
+    items: [
+      ["Acne Treatment Session", "₹999"],
+      ["Hydra Facial", "₹1,499"],
+      ["Chemical Peel", "₹1,999+"],
+      ["Pigmentation Removal", "₹2,499+"],
+      ["Skin Brightening Therapy", "₹1,799"],
+      ["Advanced Skin Consultation", "₹499"],
+    ],
+  },
+  {
+    name: "Hair Solutions",
+    icon: "💇‍♀️",
+    col: "#4F1C3D",
+    featured: true,
+    items: [
+      ["Hair Fall Treatment", "₹1,299"],
+      ["PRP Hair Therapy", "₹3,999+"],
+      ["Scalp Analysis", "₹499"],
+      ["Dandruff Control Treatment", "₹999"],
+      ["Hair Strengthening Session", "₹1,499"],
+      ["Hair Growth Package", "₹5,999+"],
+    ],
+  },
+  {
+    name: "Laser Treatments",
+    icon: "⚡",
+    col: "#4F1C3D",
+    items: [
+      ["Laser Hair Removal (Face)", "₹1,499+"],
+      ["Underarm Laser", "₹1,999+"],
+      ["Full Body Laser", "₹9,999+"],
+      ["Pigmentation Laser", "₹2,499+"],
+      ["Skin Resurfacing Laser", "₹3,999+"],
+      ["Tattoo Removal", "₹2,999+"],
+    ],
+  },
+];
 
   return (
     <section
@@ -69,8 +69,9 @@ function Pricing() {
       style={{
         padding: "clamp(100px,12vw,180px) 6vw",
         position: "relative",
-        background:
-          "linear-gradient(180deg,#f9f7f3 0%,#f3efe8 50%,#f9f7f3 100%)",
+        // background:
+        //   "linear-gradient(180deg,#f9f7f3 0%,#f3efe8 50%,#f9f7f3 100%)",
+        background: "#ffffff",
         overflow: "hidden",
       }}
     >
@@ -82,8 +83,6 @@ function Pricing() {
           left: "-150px",
           width: "400px",
           height: "400px",
-          background:
-            "radial-gradient(circle, rgba(198,169,114,0.18) 0%, transparent 70%)",
           borderRadius: "50%",
           filter: "blur(40px)",
         }}
@@ -118,11 +117,12 @@ function Pricing() {
           <h2
             style={{
               fontSize: "clamp(40px,6vw,85px)",
-              fontWeight: 800,
+              fontWeight: 600,
               letterSpacing: "-0.02em",
-              color: "#111",
+              color: "var(--dark)",
               marginBottom: "20px",
             }}
+            className="main-title"
           >
             Signature Pricing
           </h2>

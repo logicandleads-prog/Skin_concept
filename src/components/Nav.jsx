@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import twentyaxe from "./../assets/twentyaxe-logo.png";
+import twentyaxe from "./../assets/skin-concept-removebg-preview.png";
 import {
   motion,
   useScroll,
@@ -12,15 +12,11 @@ function Nav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  // useMotionValueEvent(scrollY, "change", (latest) => {
-  //   setIsScrolled(latest > 50);
-  // });
-
-useEffect(() => {
-  return scrollY.on("change", (latest) => {
-    setIsScrolled(latest > 50);
-  });
-}, [scrollY]);
+  useEffect(() => {
+    return scrollY.on("change", (latest) => {
+      setIsScrolled(latest > 50);
+    });
+  }, [scrollY]);
 
   const navLinks = [
     { name: "Atelier", href: "#about" },
@@ -46,7 +42,7 @@ useEffect(() => {
           transition: all 0.3s ease;
         }
 
-        .nav-link:hover { opacity: 1; color: #D4AF37 !important; }
+        .nav-link:hover { opacity: 1; }
 
         @media (max-width: 1024px) {
           .desktop-menu { display: none !important; }
@@ -77,10 +73,10 @@ useEffect(() => {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "0 80px",
-          background: isScrolled ? "rgba(252, 251, 251, 0.5)" : "transparent",
+          background: isScrolled ? "rgba(252, 251, 252, 0.5)" : "transparent",
           backdropFilter: isScrolled ? "blur(15px)" : "none",
           border: isScrolled
-            ? "1px solid rgba(212,175,55,0.2)"
+            ? "3px solid rgba(0, 0, 0, 0.2)"
             : "1px solid transparent",
           borderRadius: isScrolled ? "100px" : "0px",
           zIndex: 9999,
@@ -88,15 +84,18 @@ useEffect(() => {
         }}
       >
         {/* LOGO */}
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "  " }}>
           <img
             src={twentyaxe}
-            alt="TwentyAxe"
+            alt="SkinConcept"
             style={{
-              height: isScrolled ? "120px" : "80px", // Scaled down for mobile sanity
+              height: isScrolled ? "60px" : "80px", // Scaled down for mobile sanity
               width: "auto",
               filter: isScrolled ? "brightness(1)" : "brightness(1.2)",
               transition: "height 0.4s ease",
+              position: "relative",
+              "top": -3,
+
             }}
           />
         </div>
@@ -108,7 +107,7 @@ useEffect(() => {
               key={link.name}
               href={link.href}
               className="nav-link"
-              style={{ color: isScrolled ? "#000" : "#fff", fontSize: "13px" }}
+              style={{ color: isScrolled ? "#000" : "#000", fontSize: "13px" }}
             >
               {link.name}
             </a>
@@ -122,8 +121,8 @@ useEffect(() => {
             className="reserve-btn"
             style={{
               padding: "10px 22px",
-              background: "#D4AF37",
-              color: "#000",
+              background: "var(--purple)",
+              color: "#fff",
               fontSize: "10px",
               fontWeight: 800,
               letterSpacing: "2px",
@@ -138,46 +137,48 @@ useEffect(() => {
 
           {/* BURGER BOX */}
           <div
-  onClick={() => setIsMobileMenuOpen(true)}
-  style={{
-    cursor: "pointer",
-    padding: "8px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "5px", // Consistent spacing between lines
-    transition: "transform 0.2s ease",
-  }}
-  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
->
-  <div
-    style={{
-      width: "22px",
-      height: "2px",
-      background: isScrolled ? "#000" : "#fff",
-      borderRadius: "10px",
-      transition: "background 0.4s ease",
-    }}
-  />
-  <div
-    style={{
-      width: "22px",
-      height: "2px",
-      background: isScrolled ? "#000" : "#fff",
-      borderRadius: "10px",
-      transition: "background 0.4s ease",
-    }}
-  />
-  <div
-    style={{
-      width: "22px",
-      height: "2px",
-      background: isScrolled ? "#000" : "#fff",
-      borderRadius: "10px",
-      transition: "background 0.4s ease",
-    }}
-  />
-</div>
+            onClick={() => setIsMobileMenuOpen(true)}
+            style={{
+              cursor: "pointer",
+              padding: "8px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px", // Consistent spacing between lines
+              transition: "transform 0.2s ease",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.transform = "scale(1.05)")
+            }
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          >
+            <div
+              style={{
+                width: "22px",
+                height: "2px",
+                background: isScrolled ? "#000" : "#fff",
+                borderRadius: "10px",
+                transition: "background 0.4s ease",
+              }}
+            />
+            <div
+              style={{
+                width: "22px",
+                height: "2px",
+                background: isScrolled ? "#000" : "#fff",
+                borderRadius: "10px",
+                transition: "background 0.4s ease",
+              }}
+            />
+            <div
+              style={{
+                width: "22px",
+                height: "2px",
+                background: isScrolled ? "#000" : "#fff",
+                borderRadius: "10px",
+                transition: "background 0.4s ease",
+              }}
+            />
+          </div>
         </div>
       </motion.nav>
 

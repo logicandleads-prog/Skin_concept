@@ -3,6 +3,7 @@ import {
   motion,
   useScroll,
   useTransform,
+  useSpring
 } from "framer-motion";
 
 import img1 from "./../assets/heroSection/image1.jpg";
@@ -12,10 +13,10 @@ import img4 from "./../assets/heroSection/image4.jpg";
 import img5 from "./../assets/heroSection/image5.jpg";
 
 const features = [
-  { id: "01", title: "Hair Artistry", img: img1 },
-  { id: "02", title: "Skin & Glow", img: img2 },
-  { id: "03", title: "Bridal Rituals", img: img3 },
-  { id: "04", title: "Wellness", img: img4 },
+  { id: "01", title: "Hair Artistry", img: img5},
+  { id: "02", title: "Skin & Glow", img: img5 },
+  { id: "03", title: "Bridal Rituals", img: img5 },
+  { id: "04", title: "Wellness", img: img5 },
   { id: "05", title: "Luxury Spa", img: img5 },
 ];
 
@@ -23,12 +24,19 @@ function SalonShowcase() {
   const targetRef = useRef(null);
   
   // horizontal scroll logic
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
+const { scrollYProgress } = useScroll({
+  target: targetRef,
+  offset: ["start start", "end start"],
+});
 
-  // Moves the content from 0% to -66% to create horizontal effect
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-65%"]);
+const smoothProgress = useSpring(scrollYProgress, {
+  stiffness: 100,
+  damping: 30,
+  mass: 0.5
+});
+
+const x = useTransform(smoothProgress, [0, 1], ["0%", "-75%"]);
+const y = useTransform(smoothProgress, [0, 1], ["0px", "-50px"]);
 
   return (
     <section ref={targetRef} className="showcase-scroll-container">
@@ -40,13 +48,13 @@ function SalonShowcase() {
         </div>
 
         {/* Moving Content Side-to-Side */}
-        <motion.div style={{ x }} className="horizontal-content">
+        <motion.div style={{ x, y }} className="horizontal-content">
           
           {/* Introductory Card */}
           <div className="intro-card">
             <span className="label">The Sanctuary</span>
-            <h2>Twenty Axe <br/> Studio</h2>
-            <p>A sequence of refined moments designed for the modern individual.</p>
+            <h2>Skin<br/> Concept </h2>
+            <p>correction of Hair & Skin Clinic</p>
           </div>
 
           {/* Feature Cards */}
@@ -70,8 +78,8 @@ function SalonShowcase() {
   <style>{`
   .showcase-scroll-container {
     position: relative;
-    height: 300vh;
-    background: #1a1a1a;
+    height: 400vh;
+    background: #ffffff;
   }
 
   .sticky-wrapper {
@@ -100,19 +108,21 @@ function SalonShowcase() {
   }
 
   .horizontal-content {
-    display: flex;
-    gap: 150px;
-    padding: 0 10vw;
-    align-items: center;
+  display: flex;
+  gap: 150px;
+  padding: 0 10vw;
+  align-items: center;
+  will-change: transform;
   }
 
   /* Intro Card Styling */
   .intro-card {
     min-width: 400px;
-    color: white;
+    color: black;
   }
-  .intro-card .label { color: #637B77; text-transform: uppercase; letter-spacing: 4px; font-size: 12px; font-weight: 700; }
-  .intro-card h2 { font-size: 60px; margin: 20px 0; font-family: 'Playfair Display', serif; }
+
+  .intro-card .label { color: #000000; text-transform: uppercase; letter-spacing: 4px; font-size: 12px; font-weight: 700; }
+  .intro-card h2 { font-size: 80px; margin: 20px 0; font-family: 'Playfair Display', serif; }
   .intro-card p { color: #888; font-size: 18px; line-height: 1.6; max-width: 300px; }
 
   /* Feature Card Styling */

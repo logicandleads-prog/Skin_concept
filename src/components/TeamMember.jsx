@@ -13,22 +13,22 @@ const teamMembers = [
   {
     name: "Aarav Mehta",
     role: "Creative Director",
-    image: img1
+    image: img5
   },
   {
     name: "Sofia Kapoor",
     role: "Senior Stylist",
-    image: img2
+    image: img5
   },
   {
     name: "Reyansh Patel",
     role: "Master Barber",
-    image: img3
+    image: img5
   },
   {
     name: "Elena Sharma",
     role: "Color Specialist",
-    image: img4
+    image: img5
   },
   {
     name: "Elena Sharma",
@@ -43,7 +43,7 @@ function Team() {
   return (
     <section
       style={{
-        background: "#0A0A0A",
+        background: "#ffffff",
         padding: "140px 0",
         overflow: "hidden",
         position: "relative",
@@ -71,7 +71,7 @@ function Team() {
           style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: "clamp(36px, 5vw, 64px)",
-            color: "#fff",
+            color: "#000000",
             fontWeight: 500,
           }}
         >

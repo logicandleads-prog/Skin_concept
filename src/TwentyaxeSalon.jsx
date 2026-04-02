@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
-import SalonShowcase  from "./components/SalonShowcase";
-import About  from "./components/About";
+import SalonShowcase from "./components/SalonShowcase";
+import SelfSection from "./components/selfSection";
+import About from "./components/About";
 import Stats from "./components/Stats";
 import Services from "./components/Services";
 import Team from "./components/TeamMember";
@@ -18,7 +19,7 @@ const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* ── Exact salon colors from photo ── */
+  /* ── Exact Skin  colors from photo ── */
   --sage:        #7A9490;   /* wall color — sage green-grey */
   --sage-dark:   #5C7470;   /* deeper sage */
   --sage-light:  #A8BCBA;   /* lighter sage */
@@ -43,6 +44,8 @@ const CSS = `
   --text2:       #3D5552;   /* medium sage text */
   --text3:       #7A9490;   /* muted sage text */
   --white:       #FFFFFF;
+  // --purple:       #4F1C3D;   /* deep purple accent */
+  --purple:       #7A0063;   /* deep purple accent */
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -146,31 +149,57 @@ select.finput{background:var(--marble)}
 
 /* ── CURSOR ── */
 function Cursor() {
-  const c = useRef(null),
-    r = useRef(null);
-  const pos = useRef({ x: 0, y: 0 }),
-    ring = useRef({ x: 0, y: 0 });
+  const [enabled, setEnabled] = useState(false);
+
+  const c = useRef(null);
+  const r = useRef(null);
+
+  const pos = useRef({ x: 0, y: 0 });
+  const ring = useRef({ x: 0, y: 0 });
+
   useEffect(() => {
+    // detect desktop pointer
+    const media = window.matchMedia("(pointer: fine)");
+    setEnabled(media.matches);
+
+    const handleChange = (e) => setEnabled(e.matches);
+    media.addEventListener("change", handleChange);
+
+    return () => media.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
     const move = (e) => {
       pos.current = { x: e.clientX, y: e.clientY };
+
       if (c.current) {
         c.current.style.left = e.clientX + "px";
         c.current.style.top = e.clientY + "px";
       }
     };
+
     const anim = () => {
       ring.current.x += (pos.current.x - ring.current.x) * 0.12;
       ring.current.y += (pos.current.y - ring.current.y) * 0.12;
+
       if (r.current) {
         r.current.style.left = ring.current.x + "px";
         r.current.style.top = ring.current.y + "px";
       }
+
       requestAnimationFrame(anim);
     };
+
     window.addEventListener("mousemove", move);
     anim();
+
     return () => window.removeEventListener("mousemove", move);
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
+
   return (
     <>
       <div ref={c} id="cur" />
@@ -211,6 +240,7 @@ export default function App() {
       <Cursor />
       <Nav />
       <Hero />
+      <SelfSection />
       <SalonShowcase />
       <About />
       <Team />
@@ -222,6 +252,7 @@ export default function App() {
       <Booking />
       <Footer />
       <WhatsAppFloat />
+      {/* */}
     </div>
   );
 }

@@ -10,44 +10,44 @@ import img8 from "./../assets/heroSection/image8.jpg";
 function Gallery() {
   const items = [
     {
-      label: "Rose Gold Color",
-      sub: "Hair Transformation",
-      img: img1
-    },
-    {
-      label: "Salon Interior",
-      sub: "Clean & Cozy Vibes",
-      img: img2
-    },
-    {
-      label: "Gold Facial",
+      label: "laser treatment",
       sub: "Skin Transformation",
-      img: img3
-    },
-    {
-      label: "Precision Cut",
-      sub: "Modern Styling",
-      img: img4
-    },
-    {
-      label: "Keratin",
-      sub: "Silk Smooth Results",
-      img: img5
-    },
-    {
-      label: "Bridal Makeup",
-      sub: "Occasion Ready",
-      img: img6
-    },
-    {
-      label: "Bridal Makeup",
-      sub: "Occasion Ready",
       img: img7
     },
     {
-      label: "Bridal Makeup",
-      sub: "Occasion Ready",
-      img: img8
+      label: "laser treatment",
+      sub: "Skin Transformation",
+      img: img7
+    },
+    {
+      label: "laser treatment",
+      sub: "Skin Transformation",
+      img: img7
+    },
+    {
+      label: "laser treatment",
+      sub: "Skin Transformation",
+      img: img7
+    },
+    {
+      label: "laser treatment",
+      sub: "Skin Transformation",
+      img: img7
+    },
+    {
+      label: "laser treatment",
+      sub: "Skin Transformation",
+      img: img7
+    },
+    {
+      label: "laser treatment",
+      sub: "Skin Transformation",
+      img: img7
+    },
+    {
+      label: "laser treatment",
+      sub: "Skin Transformation",
+      img: img7
     },
   ];
 
@@ -56,7 +56,7 @@ function Gallery() {
       id="gallery"
       style={{
         padding: "clamp(80px,10vw,160px) clamp(20px,6vw,80px)",
-        background: "#f7f5f2",
+        background: "#ffffff",
       }}
     >
       <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
@@ -65,11 +65,12 @@ function Gallery() {
           <h2
             style={{
               fontSize: "clamp(36px,6vw,72px)",
-              fontWeight: 900,
+              fontWeight: 600,
               marginBottom: "16px",
             }}
+            className="main-title"
           >
-            Our <span style={{ color: "#C6A972" }}>Transformations</span>
+            Our <span style={{ color: "var(--dark)" }}>Transformations</span>
           </h2>
           <p
             style={{
