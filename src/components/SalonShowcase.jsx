@@ -6,18 +6,20 @@ import {
   useSpring
 } from "framer-motion";
 
-import img1 from "./../assets/heroSection/image1.jpg";
-import img2 from "./../assets/heroSection/image2.jpg";
-import img3 from "./../assets/heroSection/image3.jpg";
-import img4 from "./../assets/heroSection/image4.jpg";
-import img5 from "./../assets/heroSection/image5.jpg";
+import slider_1 from "./../assets/SliderImage/slider_1.jpeg";
+import slider_2 from "./../assets/SliderImage/slider_2.jpeg";
+import slider_3 from "./../assets/SliderImage/slider_3.jpeg";
+import slider_4 from "./../assets/SliderImage/slider_4.jpeg";
+import slider_5 from "./../assets/SliderImage/slider_5.jpeg";
+import slider_6 from "./../assets/SliderImage/slider_6.jpeg";
 
 const features = [
-  { id: "01", title: "Hair Artistry", img: img5},
-  { id: "02", title: "Skin & Glow", img: img5 },
-  { id: "03", title: "Bridal Rituals", img: img5 },
-  { id: "04", title: "Wellness", img: img5 },
-  { id: "05", title: "Luxury Spa", img: img5 },
+  { id: "01", title: "Hair Artistry", img: slider_1},
+  { id: "02", title: "Skin & Glow", img: slider_2 },
+  { id: "03", title: "Bridal Rituals", img: slider_3 },
+  { id: "04", title: "Wellness", img: slider_4 },
+  { id: "05", title: "Luxury Spa", img: slider_5 },
+  { id: "06", title: "Exclusive Treatments", img: slider_6 },
 ];
 
 function SalonShowcase() {

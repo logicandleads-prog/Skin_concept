@@ -7,49 +7,101 @@ import img6 from "./../assets/heroSection/image6.jpg";
 import img7 from "./../assets/heroSection/image7.jpg";
 import img8 from "./../assets/heroSection/image8.jpg";
 
+import Transformations_1 from "./../assets/Transformations/Transformations_1.jpeg";
+import Transformations_2 from "./../assets/Transformations/Transformations_2.jpeg";
+import Transformations_3 from "./../assets/Transformations/Transformations_3.jpeg";
+import Transformations_4 from "./../assets/Transformations/Transformations_4.jpeg";
+import Transformations_5 from "./../assets/Transformations/Transformations_5.jpeg";
+import Transformations_6 from "./../assets/Transformations/Transformations_6.jpeg";
+import Transformations_7 from "./../assets/Transformations/Transformations_7.jpeg";
+import Transformations_8 from "./../assets/Transformations/Transformations_8.jpeg";
+
 function Gallery() {
+  // const items = [
+  //   {
+  //     label: "acne and scar treatment",
+  //     sub: "Skin Transformation",
+  //     img: Transformations_1
+  //   },
+  //   {
+  //     label: "hydrafacial",
+  //     sub: "Skin Transformation",
+  //     img: Transformations_2
+  //   },
+  //   {
+  //     label: "skin brightening",
+  //     sub: "Skin Transformation",
+  //     img: Transformations_3
+  //   },
+  //   {
+  //     label: "chemical peeling",
+  //     sub: "Skin Transformation",
+  //     img: Transformations_4
+  //   },
+  //   {
+  //     label: "laser hair removal",
+  //     sub: "Skin Transformation",
+  //     img: Transformations_5
+  //   },
+  //   {
+  //     label: "Tatto removal",
+  //     sub: "Skin Transformation",
+  //     img: Transformations_6
+  //   },
+  //   {
+  //     label: "pigmentation laser treatment",
+  //     sub: "Skin Transformation",
+  //     img: Transformations_7
+  //   },
+  //   {
+  //     label: "Full Body laser treatment",
+  //     sub: "Skin Transformation",
+  //     img: Transformations_8
+  //   },
+  // ];
+
   const items = [
-    {
-      label: "laser treatment",
-      sub: "Skin Transformation",
-      img: img7
-    },
-    {
-      label: "laser treatment",
-      sub: "Skin Transformation",
-      img: img7
-    },
-    {
-      label: "laser treatment",
-      sub: "Skin Transformation",
-      img: img7
-    },
-    {
-      label: "laser treatment",
-      sub: "Skin Transformation",
-      img: img7
-    },
-    {
-      label: "laser treatment",
-      sub: "Skin Transformation",
-      img: img7
-    },
-    {
-      label: "laser treatment",
-      sub: "Skin Transformation",
-      img: img7
-    },
-    {
-      label: "laser treatment",
-      sub: "Skin Transformation",
-      img: img7
-    },
-    {
-      label: "laser treatment",
-      sub: "Skin Transformation",
-      img: img7
-    },
-  ];
+  {
+    label: "Acne and Scar Treatment",
+    sub: "Clear & Textural Repair",
+    img: Transformations_1
+  },
+  {
+    label: "HydraFacial",
+    sub: "Deep Hydration & Glow",
+    img: Transformations_2
+  },
+  {
+    label: "Skin Brightening",
+    sub: "Luminous Tone Correction",
+    img: Transformations_3
+  },
+  {
+    label: "Chemical Peeling",
+    sub: "Professional Resurfacing",
+    img: Transformations_4
+  },
+  {
+    label: "Laser Hair Removal",
+    sub: "Permanent Smoothness",
+    img: Transformations_5
+  },
+  {
+    label: "Tattoo Removal",
+    sub: "Advanced Ink Clearance",
+    img: Transformations_6
+  },
+  {
+    label: "Pigmentation Laser Treatment",
+    sub: "Targeted Spot Correction",
+    img: Transformations_7
+  },
+  {
+    label: "Full Body Laser Treatment",
+    sub: "Ultimate Skin Precision",
+    img: Transformations_8
+  },
+];
 
   return (
     <section

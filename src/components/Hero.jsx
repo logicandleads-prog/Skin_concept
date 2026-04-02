@@ -630,6 +630,22 @@ import img3 from "./../assets/heroSection/image3.jpg";
 import img5 from "./../assets/before.png";
 import img4 from "./../assets/after.png";
 
+import B_acne from "./../assets/heroImages/before/before_acne.png";
+import A_acne from "./../assets/heroImages/after/after_acne.png";
+
+import B_skin_bright from "./../assets/heroImages/before/skin_brightess.png";
+import A_skin_bright from "./../assets/heroImages/after/skin_brightess.png";
+
+import B_anti_age from "./../assets/heroImages/before/anti_age.png";
+import A_anti_age from "./../assets/heroImages/after/anti_age.png";
+
+import B_peel from "./../assets/heroImages/before/peel.png";
+import A_peel from "./../assets/heroImages/after/peel.png";
+
+
+import B_laser from "./../assets/heroImages/before/laser.png";
+import A_laser from "./../assets/heroImages/after/laser.png";
+
 const SLIDES = [
   {
     id: "01",
@@ -645,8 +661,8 @@ const SLIDES = [
     afterLabel: "Glass Skin",
     beforeHint: "Dark spots · Pigmentation · Dullness",
     afterHint: "Even · Bright · Luminous",
-    beforeImg: img4,
-    afterImg: img5,
+    beforeImg: B_skin_bright,
+    afterImg: A_skin_bright,
   },
   {
     id: "02",
@@ -662,8 +678,8 @@ const SLIDES = [
     // afterLabel: "Smooth & Clear",
     beforeHint: "Breakouts · Scars · Redness",
     afterHint: "Smooth · Clear · Confident",
-    beforeImg: img4,
-    afterImg: img5,
+    beforeImg: B_acne,
+    afterImg: A_acne,
   },
   {
     id: "03",
@@ -679,8 +695,8 @@ const SLIDES = [
     afterLabel: "Hair-Free Forever",
     beforeHint: "Coarse hair · Ingrowths · Stubble",
     afterHint: "Smooth · Soft · Permanent",
-    beforeImg: img4,
-    afterImg: img5,
+    beforeImg: B_laser,
+    afterImg: A_laser,
   },
   {
     id: "04",
@@ -696,8 +712,8 @@ const SLIDES = [
     afterLabel: "Youthful Glow",
     beforeHint: "Wrinkles · Sagging · Tired look",
     afterHint: "Lifted · Plump · Radiant",
-    beforeImg: img4,
-    afterImg: img5,
+    beforeImg: B_anti_age,
+    afterImg: A_anti_age,
   },
   {
     id: "05",
@@ -713,8 +729,8 @@ const SLIDES = [
     afterLabel: "Renewed & Bright",
     beforeHint: "Dullness · Rough texture · Pores",
     afterHint: "Smooth · Fresh · Renewed",
-    beforeImg: img4,
-    afterImg: img5,
+    beforeImg: B_peel,
+    afterImg: A_peel,
   },
 ];
 
