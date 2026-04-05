@@ -86,7 +86,7 @@ function About() {
           maxWidth: "600px",
         }}
       >
-        At Twentyaxe, led by{" "}
+        At Skin concept, led by{" "}
         <strong style={{ color: "var(--sage-dark)" }}>Chandni Patel</strong>,
         we believe beauty begins with understanding. Our sage-green sanctuary
         is designed to calm your mind while our expert team transforms your

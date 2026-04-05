@@ -251,7 +251,7 @@ function Nav() {
                   letterSpacing: "4px",
                 }}
               >
-                TWENTYAXE SALON
+                SKIN CONCEPT © 2024 - ALL RIGHTS RESERVED
               </p>
             </div>
           </motion.div>
