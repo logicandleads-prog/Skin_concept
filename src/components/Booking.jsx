@@ -436,9 +436,7 @@ function Booking() {
                 <div className="tick">✓</div>
                 <h3>Booking Sent</h3>
                 <p>We’ll contact you shortly.</p>
-                <button onClick={() => setDone(false)}>
-                  Book Again
-                </button>
+                <button onClick={() => setDone(false)}>Book Again</button>
               </div>
             ) : (
               <>
@@ -471,17 +469,26 @@ function Booking() {
 
                   <select name="service" required>
                     <option value="">Select Service</option>
-                    <option>Hair Artistry</option>
-                    <option>Skin & Glow</option>
-                    <option>Bridal</option>
+                    <option>Acne and Scar Treatment</option>
+                    <option>HydraFacial</option>
+                    <option>Skin Brightening</option>
+                    <option>Chemical Peeling</option>
+                    <option>Laser Hair Removal</option>
+                    <option>Tattoo Removal</option>
+                    <option>Pigmentation Laser Treatment</option>
+                    <option>Full Body Laser Treatment</option>
                   </select>
 
-                  <textarea
-                    name="message"
-                    placeholder="Your message..."
-                  />
+                  <textarea name="message" placeholder="Your message..." />
 
-                  <button type="submit">Submit Booking</button>
+                  <button
+                    type="submit"
+                    style={{
+                      background: "var(--purple)",
+                    }}
+                  >
+                    Submit Booking
+                  </button>
                 </form>
               </>
             )}
@@ -489,11 +496,7 @@ function Booking() {
 
           {/* MAP */}
           <div className="map">
-            <iframe
-              src={mapSrc}
-              loading="lazy"
-              title="map"
-            ></iframe>
+            <iframe src={mapSrc} loading="lazy" title="map"></iframe>
           </div>
         </div>
       </div>
