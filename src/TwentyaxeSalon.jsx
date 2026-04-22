@@ -243,10 +243,10 @@ export default function App() {
       <SelfSection />
       <SalonShowcase />
       <About />
-      <Team />
+      {/* <Team /> */}
       <Stats />
       <Services />
-      <Pricing />
+      {/* <Pricing /> */}
       <Gallery />
       <Testimonials />
       <Booking />
